@@ -7,6 +7,16 @@ import os, os.path
 import email.Parser
 from base64 import b64decode
 
+__author__ = 'David Bressler (@bostonlink), GuidePoint Security LLC'
+__copyright__ = 'Copyright 2013, GuidePoint Security LLC'
+__credits__ = ['Rapid7 LLC', 'GuidePoint Security LLC']
+
+__license__ = 'GPL'
+__version__ = '0.1'
+__maintainer__ = 'David Bressler (@bostonlink), GuidePoint Security LLC'
+__email__ = 'david.bressler@guidepointsecurity.com'
+__status__ = 'Development'
+
 def reportChecker(session, siteid, report):
 	fullp = os.path.join(config['nexpose/reportdir'], report)
 	if os.path.exists(fullp):
