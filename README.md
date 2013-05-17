@@ -1,44 +1,50 @@
-# README - Nextego
+# README - Nextego v1.0
 
-Welcome to Canari. You might be wondering what all these files are about. Before you can use the power of
-`canari install-package` you needed to create a transform package and that's exactly what you did here! I've given you a
-directory structure to use in the following manner:
+Author: J. David Bressler (@bostonlink)
+Demo Video: Pending release of Nextego
 
-* `src/nextego` directory is where all your stuff goes in terms of auxiliary modules that you may need for your
-  modules
-* `src/nextego/transforms` directory is where all your transform modules should be placed. An example
-  `helloworld` transform is there for your viewing pleasure.
-* `src/nextego/transforms/common` directory is where you can put some common code for your transforms like result
-  parsing, entities, etc.
-* `src/nextego/transforms/common/entities.py` is where you define your custom entities. Take a look at the
-  examples provided if you want to play around with custom entities.
-* `maltego/` is where you can store your Maltego entity exports.
-* `src/nextego/resources/maltego` directory is where your `entities.mtz` and `*.machine` files can be stored for auto
-  install and uninstall.
-* `src/nextego/resources/external` directory is where you can place non-Python transforms written in other languages.
+## 1.0 About
 
-If you're going to add a new transform in the transforms directory, remember to update the `__all__` variable in
-`src/nextego/transforms/__init__.py`. Otherwise, `canari install-package` won't attempt to install the transform.
-Alternatively, `canari create-transform <transform name>` can be used within the `src/nextego/transforms` directory
-to generate a transform module and have it automatically added to the `__init__.py` file, like so:
+Nextego is a local maltego transform pack built with the Canari Framework that integrates Rapid7's Nexpose vulnerability scanner and Maltego.  Nextego is able to launch vulnerability scans right from a Maltego graph as well as output open ports, services, service version/fingerprint, vulnerabilities, available metasploit modules, and available exploit-db exploits associated with a vulnerability.
 
-To test your transform, simply `cd` into the src directory and run `canari debug-transform`, like so:
+Directory Structure:
+
+* `src/nextego` directory is where all the magic stuff goes and happens.
+* `src/nextego/transforms` directory is where all the transform modules are located.
+* `src/nextego/transforms/common` directory is where common code for all transforms are stored.
+* `src/nextego/transforms/common/entities.py` is where custom entities are defined.
+* `maltego/` is where the Maltego entity exports are stored.
+* `src/nextego/resources/maltego` directory is where the `entities.mtz` and `*.machine` files are stored for auto install and uninstall.
+
+## 2.0 - Installation
+
+### 2.1 - Supported Platforms
+nextego has currently been tested on Mac OS X and Linux.
+
+### 2.2 - Requirements
+nextego is supported and tested on Python 2.7.3
+
+The canari framework must be installed to use this package
+See: https://github.com/allfro/canari
+
+### 2.3 - How to install
+Once you have the Canari framework installed and working, follow the directions below to install cuckooforcanari
+
+Install the package:
 
 ```bash
-$ canari debug-transform Nextego.transforms.helloworld Phil
-%50
-D:This was pointless!
-%100
-`- MaltegoTransformResponseMessage:
-  `- Entities:
-    `- Entity:  {'Type': 'test.MyTestEntity'}
-      `- Value: Hello Phil!
-      `- Weight: 1
-      `- AdditionalFields:
-        `- Field: 2 {'DisplayName': 'Field 1', 'Name': 'test.field1', 'MatchingRule': 'strict'}
-        `- Field: test {'DisplayName': 'Field N', 'Name': 'test.fieldN', 'MatchingRule': 'strict'}
+$ git clone git@github.com:bostonlink/Nextego.git
+$ cd nextego
+$ python setup.py install
 ```
+Then install the nextego package by issuing the following command:
 
-Cool right? If you have any further questions don't hesitate to drop us a line;)
+```bash
+$ canari install-package nextego
+```
+Once installed you must edit the nextego.conf configuration file.
 
-Have fun!
+```bash
+$ vim ~/.canari/nextego.conf
+```
+All Done!!  Happy Hunting!
