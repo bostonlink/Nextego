@@ -104,17 +104,26 @@ def nexposeServiceVer(report):
 	for service in rptxml.findall(".//nodes/node/endpoints/endpoint/services/service"):
 		for ver in service[0]:
 			try:
-				serverdic = {service.attrib['name'] : [ver.attrib['product'], ver.attrib['version'], ver.attrib['certainty']]}
-				serverlist.append(serverdic)
-			except Exception, e:
-				if 'product' == e:
-					serverdic = {service.attrib['name'] : [ver.attrib['version'], ver.attrib['certainty']]}
+				if 'product' in ver.attrib and 'version' in ver.attrib and 'certainty' in ver.attrib:
+					product, version, certainty = ver.attrib['product'], ver.attrib['version'], ver.attrib['certainty']
+					serverdic = {service.attrib['name'] : [product, version, certainty]}
 					serverlist.append(serverdic)
-				elif 'version' in e:
-					serverdic = {service.attrib['name'] : [ver.attrib['product'], ver.attrib['certainty']]}
+				elif 'product' in ver.attrib and 'version' in ver.attrib:
+					product, version = ver.attrib['product'], ver.attrib['version']
+					serverdic = {service.attrib['name'] : [product, version]}
+					serverlist.append(serverdic)
+				elif 'product' in ver.attrib:
+					product = ver.attrib['product']
+					serverdic = {service.attrib['name'] : [product]}
+					serverlist.append(serverdic)
+				elif 'version' in ver.attrib:
+					version = ver.attrib['version']
+					serverdic = {service.attrib['name'] : [version]}
 					serverlist.append(serverdic)
 				else:
 					pass
+			except Exception, e:
+				pass
 
 	return serverlist
 			

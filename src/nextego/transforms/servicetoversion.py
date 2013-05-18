@@ -42,16 +42,27 @@ def dotransform(request, response):
 	else:
 		raise MaltegoException('Something went wrong with the report checks')
 	
-	# have to add logic to pass on certain values that was not fingerprinted
 	for dic in nexposeServiceVer(reporto):
 		for key, val in dic.iteritems():
-			if key == request.value:
+			if key == request.value and len(val) == 3:
 				response += ServiceVersion(val[0] + '-' + val[1],
                     	siteid=siteid,
                     	scanid=request.fields['scanid'],
                     	port=request.fields['port'],
                     	service=request.value,
                     	certainty=val[2])
+			elif key == request.value and len(val) == 2:
+				response += ServiceVersion(val[0] + '-' + val[1],
+                    	siteid=siteid,
+                    	scanid=request.fields['scanid'],
+                    	port=request.fields['port'],
+                    	service=request.value)
+			elif key == request.value and len(val) == 1:
+				response += ServiceVersion(val[0],
+                    	siteid=siteid,
+                    	scanid=request.fields['scanid'],
+                    	port=request.fields['port'],
+                    	service=request.value)
 
 	return response
 	nexlogout(session)
