@@ -58,11 +58,6 @@ def nexposeExploits(report):
 
 	return exploitlist
 
-# def nexposeMalware(report):
-#	rptxml = ET.fromstring(report)
-#	for malware in rptxml.findall(".//VulnerabilityDefinitions/vulnerability/malware"):
-#		print malware
-
 def nexposeHostname(report):
 	rptxml = ET.fromstring(report)
 	for hostname in rptxml.findall(".//nodes/node/names/name"):
@@ -155,3 +150,12 @@ def nexposePortTests(report):
 		portlist.append(portdic)
 
 	return portlist
+
+def nexposeHostname(report):
+	rptxml = ET.fromstring(report)
+	xmllst = rptxml.findall(".//nodes/node/names/name")
+	namelst = []
+	for name in xmllst:
+		namelst.append(name.text)
+
+	return namelst
