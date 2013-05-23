@@ -1,7 +1,7 @@
 # README - Nextego v1.0
 
 Author: J. David Bressler (@bostonlink)<br />
-Demo Video: Pending release of Nextego
+Demo Video: http://www.youtube.com/watch?v=xJP-yicj3LM&feature=youtu.be
 
 ## 1.0 About
 
