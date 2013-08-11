@@ -28,7 +28,7 @@ The canari framework must be installed to use this package
 See: https://github.com/allfro/canari
 
 ### 2.3 - How to install
-Once you have the Canari framework installed and working, follow the directions below to install cuckooforcanari
+Once you have the Canari framework installed and working, follow the directions below to install Nextego
 
 Install the package:
 
@@ -40,8 +40,19 @@ $ python setup.py install
 Then install the nextego package by issuing the following command:
 
 ```bash
-$ canari install-package nextego
+$ canari create-profile cuckooforcanari
 ```
+Then do the following (thanks to Nadeem Douba @ndouba):
+
+INSTRUCTIONS:
+
+1. Open Maltego.
+2. Click on the home button (Maltego icon, top-left corner).
+3. Click on 'Import'.
+4. Click on 'Import Configuration'.
+5. Follow prompts.
+6. Enjoy!
+
 Once installed you must edit the nextego.conf configuration file.
 
 ```bash
